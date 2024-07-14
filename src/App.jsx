@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { Home, Sensors } from "@/pages";
+import { Home, Charts, Sensors } from "@/pages";
 import { RootLayout, MainLayout } from "@/layouts";
 
 const router = createBrowserRouter(
@@ -13,6 +13,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
+        <Route path="charts" element={<Charts />} />
         <Route path="sensors" element={<Sensors />} />
       </Route>
     </Route>
