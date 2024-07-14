@@ -1,25 +1,28 @@
 import React from "react";
 import {
-  CameraGesture,
-  CamerIdentification,
-  FlexSensor,
-  Gyroscope,
-  Speaker,
-  Ultrasonic,
-} from "@/components";
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import { Home, Sensors } from "@/pages";
+import { RootLayout, MainLayout } from "@/layouts";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route element={<MainLayout />}>
+        <Route index element={<Home />} />
+        <Route path="sensors" element={<Sensors />} />
+      </Route>
+    </Route>
+  )
+);
 
 export default function App() {
   return (
-    <main className="flex flex-col gap-y-20 items-center justify-center min-h-screen">
-      <h1 className="text-center capitalize text-6xl">Sign language system</h1>
-      <div className="grid grid-cols-3 grid-flow-row gap-8">
-        <CameraGesture />
-        <CamerIdentification />
-        <FlexSensor />
-        <Gyroscope />
-        <Speaker />
-        <Ultrasonic />
-      </div>
-    </main>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
